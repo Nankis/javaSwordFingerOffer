@@ -1,8 +1,5 @@
 package t10_19;
 
-
-import javafx.beans.value.ObservableNumberValue;
-
 class ListNode {
     int val;
     ListNode next = null;
