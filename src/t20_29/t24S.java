@@ -2,6 +2,7 @@ package t20_29;
 
 /**
  * 输入一个链表，反转链表后，输出新链表的表头。
+ * 参考自己:https://www.jianshu.com/p/ceaab9370e14
  * 参考:https://www.javazhiyin.com/32787.html
  */
 public class t24S {
