@@ -15,7 +15,7 @@ class Solution50 {
             count[str.charAt(i) - 'A']++;
         }
         for (int i = 0; i < str.length(); i++) {
-            if (count[str.charAt(i)-'A'] == 1) return i;
+            if (count[str.charAt(i) - 'A'] == 1) return i;
         }
         return -1;
     }
