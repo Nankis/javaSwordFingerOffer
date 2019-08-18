@@ -1,4 +1,4 @@
-package bstree;
+package general;
 
 import java.util.*;
 
