@@ -97,25 +97,21 @@ class LRUCache {
         return val;
     }
 
+    //核心思路:必须同时维护双向链表和map
     public void put(int key, int val) {
         //先把节点做出来
         Node node = new Node(key, val);
         if (map.containsKey(key)) {
-            //删除旧节点,新的插入头部
-            cache.remove(map.get(key));
-            cache.addFirst(node);
-            //更新map中对应的数据
-            map.put(key, node);
-        } else {
-            if (cap == cache.size()) {
-                //删除链表中的最后一个数据,注意 同时也要把map中对应的key删除
-                Node last = cache.removeLast();
-                map.remove(last.key);
-            }
-            //直接添加到头部,并更新
-            cache.addFirst(node);
-            map.put(key, node);
+            //删除旧节点
+            cache.remove(map.get(key)); //这里因为size-1了,所以即便是下面只有if 也不会满足cap == cache.size()
+        } else if (cap == cache.size()) { //这里最好是else if 可以少做一次判断,且易于理解
+            //删除链表中的最后一个数据,注意 同时也要把map中对应的key删除
+            Node last = cache.removeLast();
+            map.remove(last.key);
         }
+        //不管key存不存在, 缓存是否已满 最终都是要在头部添加新节点的
+        cache.addFirst(node);
+        map.put(key, node);
     }
 
     //打印结果不准确?  要打印链表 即cache
@@ -139,13 +135,16 @@ public class LRU {
         lru.put(3, 3);
         lru.put(4, 4);
 
+        //节点提前
         System.out.println(lru.toString());
         lru.put(2, 2);
 
+        //在满cache情况下添加新节点
         System.out.println(lru.toString());
         lru.put(5, 5);
 
         System.out.println(lru.toString());
+
 
     }
 }
