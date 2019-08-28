@@ -16,11 +16,20 @@ class ListNode {
  * <p>
  * 递归:   当核心逻辑完成后, 下一步就是从1开始!   即---只看函数名便知道可以做什么.  (不能一直跟踪函数,否则容易被绕晕,只要直到这个函数是干什么的,然后调用就行)
  */
-public class t18_2S {
+public class t18_2S {//不懂??
+    public static void main(String[] args) {
+        ListNode pHead = new ListNode(1);
+        pHead.next = new ListNode(2);
+        pHead.next.next = new ListNode(3);
+        pHead.next.next.next = new ListNode(3);
+        pHead.next.next.next.next = new ListNode(5);
+
+        Solution18.deleteDuplication(pHead);
+    }
 }
 
-class Solution {
-    public ListNode deleteDuplication(ListNode pHead) {
+class Solution18 {
+    public static ListNode deleteDuplication(ListNode pHead) {
         if (pHead == null || pHead.next == null) {
             return pHead;  //只有0或则1个节点则不用删除
         }
@@ -40,6 +49,24 @@ class Solution {
         }
 
     }
+
+    /**
+     * 递归  1->2->3->3->4->4->5
+     */
+    public static ListNode deleteDuplication3(ListNode pHead) {
+        if (pHead == null || pHead.next == null) return pHead;
+        ListNode cur = pHead, next = pHead.next;
+        if (cur.val != next.val) {
+            cur.next = deleteDuplication(next);
+            return cur;
+        } else {
+            while (next != null && cur.val == next.val) {
+                next = next.next;
+            }
+            return deleteDuplication(next);
+        }
+    }
+
 
     /**
      * 非递归实现
@@ -68,3 +95,22 @@ class Solution {
         return newHead.next;
     }
 }
+
+
+//class Solutions {
+//    public ListNode deleteDuplication(ListNode pHead) {
+//        if (pHead == null) return pHead;
+//
+//        while (pHead != null) {
+//            int val = pHead.next.val;
+//
+//            while (pHead.val==val) {
+//                pHead = pHead.next;
+//            }
+//            pHead
+//
+//        }
+//
+//
+//    }
+//}

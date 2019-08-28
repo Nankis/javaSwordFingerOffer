@@ -13,7 +13,7 @@ public class t15 {
 }
 
 
-class Solution15 {
+class Solution15 { //复习1,
     public int NumberOf1(int n) {
         //方法1  比较普通
         int count = 0;
@@ -27,7 +27,7 @@ class Solution15 {
     }
 
     /**
-     * n&(n-1)
+     * n&(n-1)  //把n二进制最末尾的1变成0
      * 该位运算去除 n 的位级表示中最低的那一位。
      * -->也就是说，把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0.
      * 那么一个整数的二进制有多少个1，就可以进行多少次这样的操作。
@@ -48,4 +48,30 @@ class Solution15 {
         }
         return count;
     }
+}
+
+
+class S15 {
+    public int NumberOf(int n) {
+        char[] ch = Integer.toBinaryString(n).toCharArray();
+        int count = 0;
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] == '1') {
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    public int NumberOf2(int n) {
+
+        int count = 0;
+
+        while (n != 0) {
+            n = n & (n - 1);
+            ++count;
+        }
+        return count;
+    }
+
 }

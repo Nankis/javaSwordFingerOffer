@@ -18,7 +18,7 @@ package t3_9;
  * 思路: 横向最大, 纵向最小
  * 要求时间复杂度 O(M + N)，空间复杂度 O(1)。其中 M 为行数，N 为 列数。
  */
-public class t4 { //复习1,
+public class t4 { //复习1,2
     public static void main(String[] args) {
         int arr[][] = {
                 {1, 4, 7, 11, 15},
@@ -29,7 +29,7 @@ public class t4 { //复习1,
         };
 
         Solution4_ s = new Solution4_();
-        System.out.println(s.Find(1, arr));
+        System.out.println(s.Find(33, arr));
     }
 }
 
@@ -55,18 +55,21 @@ class Solution4 {
 
 class Solution4_ {
     public boolean Find(int target, int[][] array) {
-        if (array == null || array.length < 1 || array[0].length < 1) return false;
-        int rows = 0;
-        int cols = array[0].length - 1;
+        if (array == null || array[0].length < 1) return false;
 
-        while (rows < array.length && cols >= 0) {
-            if (target == array[rows][cols]) return true;
+        int rows = array.length;
+        int cols = array[0].length;
 
-            else if (target < array[rows][cols]) {
-                cols--;
+        int r = 0, c = cols - 1;
+        while (r < rows) {
+            if (target > array[r][c]) {
+                r++;
+            } else if (target < array[r][c]) {
+                c--;
             } else
-                rows++;
+                return true;
         }
+
         return false;
     }
 }

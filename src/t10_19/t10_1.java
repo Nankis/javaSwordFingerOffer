@@ -13,7 +13,7 @@ package t10_19;
  * * fn = |       1,      n=1
  * *      { f(n-0)+f(n-1) n>1
  */
-public class t10_1 {
+public class t10_1 { //复习1,
     public static void main(String[] args) {
         Solution10_1 s = new Solution10_1();
         System.out.println(s.Fibonacci(5));
@@ -32,6 +32,22 @@ class Solution10_1 {
             pre2 = pre1;
             pre1 = fib;
         }
+        return fib;
+    }
+}
+
+
+class S10_1 {
+    public int Fibonacci(int n) {
+        if (n < 0) return -1;
+        int fib = 0, pre1 = 1, pre2 = 0;
+
+        for (int i = 2; i < n; i++) {
+            fib = pre1 + pre2;
+            pre2 = pre1; //向后进位
+            pre1 = fib;
+        }
+
         return fib;
     }
 }

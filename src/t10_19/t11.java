@@ -8,11 +8,12 @@ package t10_19;
  * <p>
  * PS:折半性质的算法的时间复杂度为 O(logN)
  */
-public class t11 {
+public class t11 {//复习1,
+
     public static void main(String[] args) {
         int[] arr = {3, 4, 5, 1, 2};
         Solution11 s = new Solution11();
-        System.out.println(s.minNumberInRotateArray(arr));
+        System.out.println(s11.minNumberInRotateArray(arr));
     }
 }
 
@@ -43,4 +44,24 @@ class Solution11 {
 //        }
 //    }
 
+}
+
+
+class s11 {
+    public static int minNumberInRotateArray(int[] array) {
+        int len = array.length;
+
+        int l = 0, mid;
+        int h = len - 1;
+        while (l < h) {
+            mid = l + (h - l) / 2;
+
+            if (array[mid] <= array[h]) {
+                h = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return array[l];
+    }
 }

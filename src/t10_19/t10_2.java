@@ -16,7 +16,7 @@ public class t10_2 {
     }
 }
 
-class Solution10_2 {
+class Solution10_2 { //复习1,
     public int RectCover(int target) {
         if (target <= 2) {
             return target;
@@ -25,6 +25,22 @@ class Solution10_2 {
         int pre1 = 2;
         int pre2 = 1;  //大小递减
         for (int i = 3; i <= target; i++) {  //i从比pre2大的下一个开始
+            fib = pre1 + pre2;
+            pre2 = pre1;
+            pre1 = fib;
+        }
+        return fib;
+    }
+}
+
+
+class S10_2 {
+    public int RectCover(int target) {
+        if (target <= 2) return target;
+
+        int fib = 0, pre1 = 2, pre2 = 1;
+
+        for (int i = 3; i < target; i++) {
             fib = pre1 + pre2;
             pre2 = pre1;
             pre1 = fib;

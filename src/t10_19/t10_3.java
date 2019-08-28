@@ -14,7 +14,8 @@ package t10_19;
 public class t10_3 {
 }
 
-class Solution10_3 {
+class Solution10_3 {//复习1,
+
     public int JumpFloor(int target) {
         if (target <= 2) return target;
         int fib = 0;
@@ -27,6 +28,20 @@ class Solution10_3 {
             pre1 = fib;
         }
 
+        return fib;
+    }
+}
+
+class S10_3 {
+    public int JumpFloor(int target) {
+//        if (target)
+        int fib = 0, pre1 = 2, pre2 = 1;
+
+        for (int i = 3; i < target; i++) {
+            fib = pre1 + pre2;
+            pre2 = pre1;
+            pre1 = fib;
+        }
         return fib;
     }
 }

@@ -14,7 +14,7 @@ package t10_19;
  */
 public class t12U {
     public static void main(String[] args) {
-        int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+        int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};//分别对应上移,下移  左移 右移
         char[] array = {'B', 'C', 'E', 'S', 'F', 'C', 'A', 'D', 'E', 'E'};
         char[] str = {'A', 'B', 'C', 'C', 'E', 'D'};
 
@@ -26,7 +26,7 @@ public class t12U {
 
 
 class Solution12 {
-    private final static int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+    private final static int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};//分别对应上移,下移  左移 右移
     private int rows;
     private int cols;
 
@@ -83,53 +83,13 @@ class Solution12 {
 }
 
 
-class Solution12_ {
-    private final static int[][] next = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}; //定义步长数组
-    private int rows;
-    private int cols;
-
-    public boolean hasPath(char[] array, int rows, int cols, char[] str) {
-        if (rows < 0 || cols < 0) return false;
-        this.rows = rows;
-        this.cols = cols;
-        boolean[][] marked = new boolean[rows][cols];
-
-        char[][] matrix = buildMatrix(array);
-        for (int i = 0; i < rows; i++)
-            for (int j = 0; j < cols; j++)
-                if (backTracing(matrix, marked, str, 0, i, j))
-                    return true;
-
-        return false;
-    }
-
-    private boolean backTracing(char[][] matrix, boolean[][] marked, char[] str, int pathLen, int r, int c) {
-
-        if (pathLen == str.length) return true;
-
-        if (r < 0 || r >= rows || c < 0 || c >= cols || matrix[r][c] != str[pathLen] || marked[r][c])
-            return false;
-
-        marked[r][c] = true;
-        for (int[] n : next)
-            if (backTracing(matrix, marked, str, pathLen + 1, r + n[0], c + n[1]))
-                return true;
-
-        marked[r][c] = false;
-        return false;
-
-
-    }
-
-    private char[][] buildMatrix(char[] array) {
-        char[][] matrix = new char[rows][cols];
-        for (int i = 0, index = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                matrix[i][j] = array[index++];
-            }
-        }
-        return matrix;
-    }
-
-
-}
+//class Solution12_ {
+//    static int row, col;
+//
+//    public boolean hasPath(char[] array, int rows, int cols, char[] str) {
+//        if (rows == 0 || cols == 0) return false;
+//
+//        buildMatrix()
+//
+//    }
+//}

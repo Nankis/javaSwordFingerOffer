@@ -5,9 +5,9 @@ import java.util.Stack;
 /**
  * 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。
  */
-public class t9 { //复习1,
+public class t9 { //复习1,2
     public static void main(String[] args) {
-        Solution9 solution9 = new Solution9();
+        Solution9_ solution9 = new Solution9_();
         for (int i = 1; i <= 5; i++) {
             solution9.push(i);
         }
@@ -52,9 +52,7 @@ class Solution9_ {
         if (stack2.isEmpty())
             while (!stack1.isEmpty())
                 stack2.push(stack1.pop());
-
-        if (stack2.isEmpty())
-            return Integer.MIN_VALUE;
+        if (stack2.isEmpty()) return Integer.MIN_VALUE;
 
         return stack2.pop();
     }

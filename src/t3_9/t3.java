@@ -20,10 +20,10 @@ import java.util.Map;
  * 核心思想: 将值为 i 的元素调整到第 i个位置上  //交换之前,先判断是否在i位置已经有i的值,有则重复
  */
 
-public class t3 { //复习1
+public class t3 { //复习1,2
     public static void main(String[] args) {
         int arr[] = {2, 3, 1, 0, 2, 5};
-
+        System.out.println(s3.duplicate(arr,6,new int[1]));
     }
 }
 
@@ -59,5 +59,34 @@ class Solution {
         int temp = numbers[i];
         numbers[i] = numbers[j];
         numbers[j] = temp;
+    }
+}
+
+class s3 {//{2, 3, 1, 0, 2, 5};
+
+    public static boolean duplicate(int numbers[], int length, int[] duplication) {
+
+        int len = 0;
+        while (len < length) {
+            for (int i = 0; i < length; i++) {
+                if (numbers[i] != i) {
+                    if (numbers[i] == numbers[numbers[i]])
+                        duplication[0] = numbers[i];
+                    return true;
+                }
+                swap(numbers, numbers[i], i);
+            }
+            len++;
+        }
+
+        return false;
+
+    }
+
+    private static void swap(int[] numbers, int j, int i) {
+        int temp = numbers[i];
+        numbers[i] = numbers[j];
+        numbers[j] = temp;
+
     }
 }

@@ -5,7 +5,7 @@ package t3_9;
  * 思路: 遍历字符串长度,遇到空格,在末尾加两个任意字符.最后通过双指针替换掉空格.注意顺序相反
  * A B   -->  A B**  --> A%20B
  */
-public class t5 { //复习1,
+public class t5 { //复习1,2
     public static void main(String[] args) {
         Solution5_ s5 = new Solution5_();
         StringBuffer sb = new StringBuffer("We Are Happy.");
@@ -40,22 +40,26 @@ class Solution5 {
 
 class Solution5_ {
     public String replaceSpace(StringBuffer str) {
-        int p1 = str.length() - 1;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == ' ') {
-                str.append("**");
+        StringBuilder sb = new StringBuilder();
+//        char [] arr = str.
+        int l = 0;
+        int p1 = str.length()-1;
+        while (l < str.length()) {
+            if (str.charAt(l) == ' ') {
+                str.append("*");
+                str.append("*");
             }
+            l++;
         }
-
         int p2 = str.length() - 1;
-        while (p1 < p2 && p1 >= 0) {
-            char c = str.charAt(p1--);
-            if (c == ' ') {
+        while (p1 < p2 && p1 > 0) {
+            char ch = str.charAt(p1--);
+            if (ch != ' ') {
+                str.setCharAt(p2--, ch);
+            } else {
                 str.setCharAt(p2--, '0');
                 str.setCharAt(p2--, '2');
                 str.setCharAt(p2--, '%');
-            } else {
-                str.setCharAt(p2--, c);
             }
         }
         return str.toString();

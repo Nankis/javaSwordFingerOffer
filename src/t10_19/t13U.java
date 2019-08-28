@@ -1,5 +1,7 @@
 package t10_19;
 
+import java.util.Scanner;
+
 /**
  * 地上有一个m行和n列的方格。
  * 一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，
@@ -11,9 +13,25 @@ public class t13U {
 
 }
 
-//
-//class Solution13 {
-//    public int movingCount(int threshold, int rows, int cols) {
-//
-//    }
-//}
+
+class Main {
+    public static void main(String[] args) {
+        /* code */
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            int len = sc.nextInt();
+            int[] arr = new int[len];
+            for (int i = 0; i < len; i++) {
+                arr[i] = sc.nextInt();
+            }
+            int max = 0;
+            for (int i = 0; i < len; i++) {
+                for (int j = i; j < len; j++) {
+                    if (arr[j] > arr[i])
+                        max = Math.max(max, j - i);
+                }
+            }
+            System.out.println(max);
+        }
+    }
+}

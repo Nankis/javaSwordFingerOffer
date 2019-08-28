@@ -10,7 +10,7 @@ package t3_9;
 public class t8 {
 }
 
-class Solution8 { //复习1,
+class Solution8 { //复习1,2
     public TreeLinkNode GetNext(TreeLinkNode pNode) {
         //当前节点的右孩子不为空,它后代的最左节点就是下一个节点
         if (pNode == null) return null;
@@ -35,19 +35,18 @@ class Solution8 { //复习1,
 
 class Solution8_ {
     public TreeLinkNode GetNext(TreeLinkNode pNode) {
+        if (pNode == null) return null;
         if (pNode.right != null) {
-            pNode = pNode.right; //以其右孩子为入口
-            while (pNode.left != null) pNode = pNode.left; //如果有右孩子,其后代最左孩子就是下一个中序遍历结果
+            pNode = pNode.right;
+            while (pNode.left != null) pNode = pNode.left;
             return pNode;
         }
 
-        //要查找的当前节点没有右孩子
-        //先判断其有没有父亲节点
         while (pNode.next != null) {
-            if (pNode == pNode.next.left) { //当前节点的父亲节点是当前节点爷爷节点的左孩子则,返回爷爷节点
-                return pNode.next;
-            } else pNode = pNode.next;
+            if (pNode == pNode.next.left) return pNode.next;
+            pNode = pNode.next;
         }
+
         return null;
     }
 }
