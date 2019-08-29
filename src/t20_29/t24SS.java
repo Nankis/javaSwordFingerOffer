@@ -5,7 +5,7 @@ package t20_29;
  * 参考自己:https://www.jianshu.com/p/ceaab9370e14
  * 参考:https://www.javazhiyin.com/32787.html
  */
-public class t24S {
+public class t24SS {
 }
 
 /**
@@ -28,7 +28,8 @@ public class t24S {
  * pre = cur;
  * cur = next;
  */
-class Solution24 {
+class Solution24 {//复习1,
+
     public ListNode ReverseList(ListNode head) {
         if (head == null) return null;
         ListNode pre = null, next = null, cur = head;
@@ -53,4 +54,19 @@ class Solution24 {
         return newHead;
     }
 
+}
+
+class Solution24_ {
+    public ListNode ReverseList(ListNode head) {
+        ListNode pre = null, cur, next;
+        cur = head;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+
+        return pre;
+    }
 }

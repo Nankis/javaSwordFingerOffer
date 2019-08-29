@@ -9,6 +9,7 @@ import java.util.Queue;
  * 并保证奇数和奇数，偶数和偶数之间的相对位置不变。
  */
 public class t21 {
+    //1 5 8 2 3 4 6
 }
 
 class Solution21 {

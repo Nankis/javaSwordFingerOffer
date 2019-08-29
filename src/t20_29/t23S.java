@@ -13,7 +13,7 @@ package t20_29;
 public class t23S {
 }
 
-class Solution23 {
+class Solution23 { //复习1
     public ListNode EntryNodeOfLoop(ListNode pHead) {
         if (pHead == null || pHead.next == null) return null;
 
@@ -33,4 +33,25 @@ class Solution23 {
 
         return slow;
     }
+}
+
+class Solution23_ {
+    public ListNode EntryNodeOfLoop(ListNode pHead) {
+        if (pHead == null || pHead.next == null) return null;
+
+        ListNode fast = pHead;
+        ListNode slow = pHead;
+        do {
+            fast = fast.next.next;
+            slow = slow.next;
+        } while (fast != slow);
+
+        fast = pHead;
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
 }

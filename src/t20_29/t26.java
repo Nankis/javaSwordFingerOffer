@@ -17,12 +17,12 @@ class TreeNode {
 public class t26 {
 }
 
-class Solution26 {
+class Solution26 { //复习1,
     public boolean HasSubtree(TreeNode root1, TreeNode root2) {
         boolean result = false;
         //当root1和root2均不为空的时候才进行比较,不然就直接返回false
         if (root1 != null && root2 != null) {
-            //如果根节点相同,则直接开始匹配右子树是否还继续相同
+            //如果根节点相同,则直接开始匹配树是否还继续相同
             if (root1.val == root2.val) {
                 result = DoesTree1HaveTree2(root1, root2);
             }
@@ -46,5 +46,30 @@ class Solution26 {
 
         //如果根节点对应上了,那么就分别去子节点匹配(子节点的左和右都要匹配)
         return DoesTree1HaveTree2(root1.left, root2.left) && DoesTree1HaveTree2(root1.right, root2.right);
+    }
+}
+
+
+class So26 {
+    public boolean hashSubTree(TreeNode tree1, TreeNode tree2) {
+        boolean res = false;
+
+        if (tree1 != null && tree2 != null) {
+            if (tree1.val == tree2.val) {
+                res = DTHT(tree1, tree2);
+            }
+            if (!res) res = DTHT(tree1.left, tree2);
+            if (!res) res = DTHT(tree1.right, tree2);
+        }
+        return res;
+    }
+
+    private boolean DTHT(TreeNode tree1, TreeNode tree2) {
+        if (tree2 == null) return true;
+
+        if (tree1 == null) return false;
+        if (tree1.val != tree2.val) return false;
+
+        return DTHT(tree1.left, tree2.left) && DTHT(tree1.right, tree2.right);
     }
 }

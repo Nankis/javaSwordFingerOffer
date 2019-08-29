@@ -15,15 +15,22 @@ package t20_29;
  * \\. ： 转义后的 .
  * \\d ： 数字
  */
-public class t20S {
+public class t20S { //复习1,
     public static void main(String[] args) {
         Solution20 solution20 = new Solution20();
-        char [] a = {'-','.','1','2','3'};
+        char[] a = {'-', '.', '1', '2', '3'};
         System.out.println(solution20.isNumeric(a));
     }
 }
 
 class Solution20 {
+    public boolean isNumeric(char[] str) {
+        if (str == null || str.length < 1) return false;
+        return new String(str).matches("[+-]?\\d*(\\.\\d+)?([eE][+-]?\\d+)?");
+    }
+}
+
+class Solution20_ {
     public boolean isNumeric(char[] str) {
         if (str == null || str.length < 1) return false;
         return new String(str).matches("[+-]?\\d*(\\.\\d+)?([eE][+-]?\\d+)?");
