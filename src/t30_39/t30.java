@@ -9,8 +9,7 @@ import java.util.Stack;
 public class t30 {
 }
 
-class Solution {
-
+class Solution30_ { // 复习
     Stack<Integer> dataStack = new Stack<>();
     Stack<Integer> minStack = new Stack<>();
 
@@ -31,6 +30,25 @@ class Solution {
     }
 
     public int min() {
+        return minStack.peek();
+    }
+}
+
+class s30 {
+    Stack<Integer> dataStack = new Stack<>();
+    Stack<Integer> minStack = new Stack<>();
+
+    public void push(int node) {
+        dataStack.push(node);
+        minStack.push(minStack.isEmpty() ? node : Math.min(dataStack.peek(), node));
+    }
+
+    public void pop() {
+        dataStack.pop();
+        minStack.pop();
+    }
+
+    public Integer min() {
         return minStack.peek();
     }
 }

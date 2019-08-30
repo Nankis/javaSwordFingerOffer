@@ -36,7 +36,8 @@ public class t32_3s {
 /**
  * 非递归模式
  */
-class Solution32_3s {
+class Solution32_3s {//复习1
+
     public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
@@ -52,9 +53,10 @@ class Solution32_3s {
                 if (cur.left != null) queue.offer(cur.left);
                 if (cur.right != null) queue.offer(cur.right);
             }
-
+            //下面多出的两行就和上题不一样的
             if (reverse) Collections.reverse(tempL);
             reverse = !reverse;
+
             res.add(tempL);
         }
         return res;
@@ -86,4 +88,56 @@ class Solution32_3ss {
 
     }
 
+}
+
+
+//非递归
+class s32_s {
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+    public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (pRoot == null) return res;
+        queue.add(pRoot);
+        boolean reverse = false;
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            ArrayList<Integer> tempL = new ArrayList<>();
+            for (int i = 0; i < len; i++) {
+                TreeNode cur = queue.poll();
+                tempL.add(cur.val);
+                if (cur.left != null) queue.add(cur.left);
+                if (cur.right != null) queue.add(cur.right);
+            }
+
+            if (reverse) Collections.reverse(tempL);
+            reverse = !reverse;
+            res.add(tempL);
+        }
+        return res;
+    }
+}
+
+//递归
+class s32_s2 {
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+    public ArrayList<ArrayList<Integer>> print(TreeNode pRoot) {
+        printTree(pRoot, 0);
+        return res;
+
+    }
+
+    private void printTree(TreeNode root, int level) {
+        if (root == null) return;
+        if (res.size() <= level) res.add(new ArrayList<>());
+        if (level % 2 == 0)
+            res.get(level).add(root.val);
+        else
+            res.get(level).add(0, root.val);
+
+        printTree(root.left, level + 1);
+        printTree(root.right, level + 1);
+
+    }
 }

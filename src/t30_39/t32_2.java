@@ -10,7 +10,7 @@ import java.util.Queue;
 public class t32_2 {
 }
 
-class Solution32_2 {
+class Solution32_2 { //复习1
     /**
      * 非递归方法
      *
@@ -47,11 +47,12 @@ class Solution32_2d {
     /**
      * 递归写法，可以前序，中序和后序（中序和后序要先建出所有中间的ArrayList）。
      * 参考:
-     *https://github.com/ZXZxin/ZXBlog/blob/master/%E5%88%B7%E9%A2%98/LeetCode/Tree/LeetCode%20-%20102.%20Binary%20Tree%20Level%20Order%20Traversal(%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%E4%BF%9D%E5%AD%98).md
+     * https://github.com/ZXZxin/ZXBlog/blob/master/%E5%88%B7%E9%A2%98/LeetCode/Tree/LeetCode%20-%20102.%20Binary%20Tree%20Level%20Order%20Traversal(%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%E4%BF%9D%E5%AD%98).md
+     *
      * @param pRoot
      * @return
      */
-    ArrayList<ArrayList<Integer>> res= new ArrayList<>();
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
     ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
         printTree(pRoot, 0);
@@ -72,4 +73,50 @@ class Solution32_2d {
         printTree(node.right, level + 1);
     }
 
+}
+
+
+class s32_1 {
+    ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        if (pRoot != null) queue.add(pRoot);
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            ArrayList<Integer> tempL = new ArrayList<>();
+            for (int i = 0; i < len; i++) {
+                TreeNode cur = queue.poll();
+                tempL.add(cur.val);
+                if (cur.left != null) queue.add(cur.left);
+                if (cur.right != null) queue.add(cur.right);
+            }
+            res.add(tempL);
+        }
+        return res;
+    }
+}
+
+class s32_2 { //递归式
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+    ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+        printTree(pRoot, 0);
+        return res;
+    }
+
+    private void printTree(TreeNode root, int level) {
+        if (root == null) return;
+
+        if (res.size() <= level) {//当前层级还没建立
+            ArrayList<Integer> tempL = new ArrayList<>();
+            tempL.add(root.val);
+            res.add(tempL);
+        } else {
+            res.get(level).add(root.val);
+        }
+        printTree(root.left, level + 1);
+        printTree(root.right, level + 1);
+
+    }
 }

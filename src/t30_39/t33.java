@@ -10,7 +10,8 @@ public class t33 {
 }
 
 // 1 2 3 6 8 7 5
-class Solution33 {
+class Solution33 {//复习1,
+
     public boolean VerifySquenceOfBST(int[] sequence) {
         if (sequence == null || sequence.length == 0) return false;
 
@@ -34,5 +35,45 @@ class Solution33 {
         return verify(sequence, L, mid - 1) && verify(sequence, mid, R - 1); //左右两边都是满足条件的
     }
 
+}
 
+/**
+ * 这种写法，是后往前(从前往后也可以)，将每一个数都看做某一棵子树的根，然后判断这颗子树之后是否满足(即前一部分是<root，后一部分是>root)；
+ * 但是这种方式重复判断了一些问题，效率没有这么高；
+ */
+class s33 {
+    public boolean VerifySquenceOfBST(int[] sequence) {
+        if (sequence == null || sequence.length == 0) return false;
+        for (int root = sequence.length - 1; root >= 0; root--) {
+            int p = 0;//最后一个是root
+            while (sequence[p] < sequence[root]) p++;
+            while (sequence[p] > sequence[root]) p++;
+            if (p != root) return false;
+        }
+        return true;
+    }
+}
+
+//递归
+class s33_ {
+    public boolean VerifySquenceOfBST(int[] sequence) {
+        return verify(sequence, 0, sequence.length - 1);
+    }
+
+    private boolean verify(int[] sequence, int L, int R) {
+        if (L >= R) return true;
+
+        int i = L;
+        while (i < R && sequence[i] < sequence[R])
+            i++;
+        int mid = i;
+        while (i < R) {
+            if (sequence[i] < sequence[R])
+                return false;
+            i++;
+        }
+
+        return verify(sequence, L, mid - 1) && verify(sequence, mid, R - 1);
+
+    }
 }

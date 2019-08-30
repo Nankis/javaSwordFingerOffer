@@ -3,6 +3,7 @@ package t30_39;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * 输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。
@@ -19,7 +20,6 @@ class Solution34 {
 
     public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
         backTracking(root, target, new ArrayList<>());
-
         //考虑数组长度的放前面
         Collections.sort(res, new Comparator<ArrayList<Integer>>() {
             @Override
@@ -27,7 +27,6 @@ class Solution34 {
                 return o2.size() - o1.size();
             }
         });
-
         return res;
     }
 
@@ -42,6 +41,30 @@ class Solution34 {
             backTracking(node.right, target, path);
         }
         // 等价于 target+=node.val
+        path.remove(path.size() - 1);
+    }
+}
+
+class S34 {
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
+        traceBack(root, target, new ArrayList<>());
+        Collections.sort(res, (List l1, List l2) -> l2.size() - l1.size());
+        return res;
+    }
+
+    private void traceBack(TreeNode root, int target, ArrayList<Integer> path) {
+        if (root == null) return;
+        path.add(root.val);
+        target -= root.val;
+        if (target == 0 && root.left == null && root.right == null) {
+            res.add(new ArrayList<>(path));
+        } else {
+            traceBack(root.left, target, path);
+            traceBack(root.right, target, path);
+        }
+
         path.remove(path.size() - 1);
     }
 }
