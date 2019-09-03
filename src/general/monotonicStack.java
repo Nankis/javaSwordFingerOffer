@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
+ * https://endlesslethe.com/monotone-queue-and-stack-tutorial.html?tdsourcetag=s_pcqq_aiomsg  单调队列总结
+ * https://blog.csdn.net/liujian20150808/article/details/50752861?tdsourcetag=s_pcqq_aiomsg  单调栈总结
+ * 补充单调队列:
+ * https://github.com/ZXZxin/ZXBlog/blob/master/%E5%88%B7%E9%A2%98/Other/LintCode/TwoPointer/LintCode%20-%20362.%20Sliding%20Window%20Maximum%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC.md
+ * <p>
  * https://mp.weixin.qq.com/s/X0kf4rB88oS-VOcI7OR6OA
  * 单调栈的使用
  * 题1:
