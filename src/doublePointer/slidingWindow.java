@@ -34,8 +34,8 @@ public class slidingWindow {
         String S = "EBBANCF";
         String T = "ABC";
 //        System.out.println(SW1.minWindow(S, T));
-
-        System.out.println(SW3.lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(SW2.findAnagrams("abcdacd","ad"));
+//        System.out.println(SW3.lengthOfLongestSubstring("abcabcbb"));
     }
 }
 
@@ -99,8 +99,9 @@ class SW1 {
  * 链接：https://leetcode-cn.com/problems/find-all-anagrams-in-a-string
  */
 class SW2 {
-    public List<Integer> findAnagrams(String s, String p) {
+    public static int findAnagrams(String s, String p) {
         int left = 0, right = 0;
+        int r = 0;
         List<Integer> res = new ArrayList<>();
         HashMap<Character, Integer> needs = new HashMap<>();
         HashMap<Character, Integer> window = new HashMap<>();
@@ -118,8 +119,9 @@ class SW2 {
 
             while (match == needs.size()) {
                 //如果window的大小刚好满足,就把起始索引left加入结果
-                if (right - left == p.length())
-                    res.add(left);
+//                if (right - left == p.length())
+//                    res.add(left);
+                    r = Math.max(r,left);
 
                 char c2 = s.charAt(left);
                 if (needs.containsKey(c2)) {
@@ -131,7 +133,7 @@ class SW2 {
             }
         }
 
-        return res;
+        return r+1;
     }
 }
 

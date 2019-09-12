@@ -1,6 +1,5 @@
 package DP;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -22,6 +21,7 @@ public class LIS {
                 {6, 7},
                 {2, 3},
         };
+
         System.out.println(LIS1.lengthOfLIS(arr));
         System.out.println(LIS2.maxEnvelopes(envelopes));
 
