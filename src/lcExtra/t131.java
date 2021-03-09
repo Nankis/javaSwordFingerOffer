@@ -8,7 +8,8 @@ public class t131 {
     static List<String> path = new ArrayList<>();
 
     public static void main(String[] args) {
-        System.out.println(partition("aab"));
+//        System.out.println(partition("aab"));
+
     }
 
     public static List<List<String>> partition(String s) {
